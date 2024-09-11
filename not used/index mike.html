@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Moshling Seed Garden</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Chewy" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="moshi.js"></script>
+  <script src="seedOpts.js"></script>
+</head>
+
+<body>
+  <div class="d-flex align-items-center justify-content-center" style="height: 90vh">
+    <div class="container cont-bg">
+      <div class="row">
+        <div class="col">
+          <img class="logo-img" src="./assets/logo.png" />
+          <!-- target="_blank" will make link open in new tab -->
+          <a class="btn dwn dwn-positon" href="https://moshionline.net/download/" data-bs-toggle="tooltip"
+            data-bs-placement="bottom" title="Get the game here!" target="_blank">Download</a>
+          <input class="search-position" type="text" placeholder="Search.." />
+        </div>
+        <div>
+          <div class="row mb-4">
+            <div class="col d-flex">
+              <div class="mx-auto">
+                <select class="form-select bg-dwn fw-bolder" aria-label="Default select example" id="drpdwn1">
+                  <option value="">None Selected</option>
+                </select>
+              </div>
+            </div>
+            <div class="col d-flex">
+              <div class="mx-auto">
+                <select class="form-select bg-dwn fw-bolder" aria-label="Default select example" id="drpdwn2">
+                  <option value="">None Selected</option>
+                </select>
+              </div>
+            </div>
+            <div class="col d-flex">
+              <div class="mx-auto">
+                <select class="form-select bg-dwn fw-bolder" aria-label="Default select example" id="drpdwn3">
+                  <option value="">None Selected</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- react -->
+          <div id="root"></div>
+          <!-- react -->
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <footer class="footer">
+    <p class="text-center fs-5">
+      Created by
+      <span style="color: rgb(168, 29, 99)">Abba
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart"
+          viewBox="0 0 16 16">
+          <path
+            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+        </svg></span>. Not associated with Mind Candy.
+    </p>
+  </footer>
+
+  <!-- tooltips download -->
+  <script async defer>
+    var tooltipTriggerList = [].slice.call(
+      document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    );
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  </script>
+
+  <script>
+    //select tag population
+    var drp1 = document.getElementById("drpdwn1");
+    var drp2 = document.getElementById("drpdwn2");
+    var drp3 = document.getElementById("drpdwn3");
+
+    function popdrp(drpElement) {
+      seedOpts.map((seed, i) => {
+        let opt = document.createElement("option");
+        opt.value = i; // the index
+        opt.innerHTML = seed.seedName;
+        drpElement.append(opt);
+      });
+    }
+    popdrp(drp1);
+    popdrp(drp2);
+    popdrp(drp3);
+
+    //table population
+    function createData(item, index) {
+      var table = document.getElementById("myTable");
+      var row = table.insertRow();
+
+      var cell1 = row.insertCell();
+      var cell2 = row.insertCell();
+      var cell3 = row.insertCell();
+      var cell4 = row.insertCell();
+      var cell5 = row.insertCell();
+
+      cell1.innerHTML = item.seedName1;
+      cell2.innerHTML = item.seedName2;
+      cell3.innerHTML = item.seedName3;
+      cell4.innerHTML = item.moshling;
+      cell5.innerHTML = item.group;
+    }
+
+
+  </script>
+
+  <!-- react -->
+  <script type="text/babel">
+    function Hello() {
+      const [tableData, setTableData] = React.useState([])
+      React.useEffect(() => {
+        console.log("*****use effect works");
+        // mdata.forEach(createData);
+        debugger
+        console.log("*****use effect works", mdata);
+
+        setTableData(mdata)
+        debugger
+
+        function filterData() {
+          // drp1
+          // drp2
+          // drp3
+          // const selectedindex = event.target.value;
+          // const selectedvalue = seedOpts[selectedindex].seedName;
+
+
+          const selectedindex1 = drp1.target.value;
+          const selectedindex2 = drp2.target.value;
+          const selectedindex3 = drp3.target.value;
+          const selectedvalue1 = seedOpts[selectedindex1].seedName;
+          const selectedvalue2 = seedOpts[selectedindex1].seedName;
+          const selectedvalue3 = seedOpts[selectedindex1].seedName;
+
+
+
+
+
+
+          // for (let index = 0; index < array.length; index++) {
+          //   const element = array[index];
+            
+
+
+          // }
+          const result = mdata.filter(item => 
+          item.seedName1 === selectedvalue1 || 
+          item.seedName2 === selectedvalue1 || 
+          item.seedName3 === selectedvalue1 ||
+        
+          item.seedName1 === selectedvalue2 || 
+          item.seedName2 === selectedvalue2 || 
+          item.seedName3 === selectedvalue2 ||
+
+          item.seedName1 === selectedvalue1 || 
+          item.seedName2 === selectedvalue1 || 
+          item.seedName3 === selectedvalue1 ||
+        
+        
+        )
+          console.log("*****console log works");
+          console.log(selectedvalue);
+          console.log(result);
+
+          setTableData(result)
+        }
+
+        //sort function
+        document.getElementById('drpdwn1').addEventListener('change', (event) => {
+          data
+          const selectedindex = event.target.value;
+          const selectedvalue = seedOpts[selectedindex].seedName;
+
+          filterData()
+
+          return
+          const filteredata = selectedvalue === 'all'
+            ? mdata
+            : mdata.filter(item => item.catergory === selectedvalue)
+
+          const result = mdata.filter(item => item.seedName1 === selectedvalue || item.seedName2 === selectedvalue || item.seedName3 === selectedvalue)
+
+          console.log("*****console log works");
+          console.log(selectedvalue);
+          console.log(result);
+
+          setTableData(result)
+          // createData(filteredata);
+        });
+
+
+
+
+
+
+      }, [])
+
+      React.useEffect(() => {
+        console.log("*****tabledata uef works", tableData);
+
+      }, [tableData])
+
+
+      function createDataFAKE(item, index) {
+        var table = document.getElementById("myTable");
+        var row = table.insertRow();
+
+        var cell1 = row.insertCell();
+        var cell2 = row.insertCell();
+        var cell3 = row.insertCell();
+        var cell4 = row.insertCell();
+        var cell5 = row.insertCell();
+
+        cell1.innerHTML = item.seedName1;
+        cell2.innerHTML = item.seedName2;
+        cell3.innerHTML = item.seedName3;
+        cell4.innerHTML = item.moshling;
+        cell5.innerHTML = item.group;
+      }
+      return (
+        <div>
+          <div className="cust-scroll">
+            <table className="customers" id="myTable">
+              <thead>
+                <tr>
+                  <th scope="col">Seed Type 1</th>
+                  <th scope="col">Seed Type 2</th>
+                  <th scope="col">Seed Type 3</th>
+                  <th scope="col">Moshling</th>
+                  <th scope="col">Group</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tableData.map((element, index) => (
+                  <tr>
+                    <td>{element.seedName1}</td>
+                    <td>{element.seedName2}</td>
+                    <td>{element.seedName3}</td>
+                    <td>{element.moshling} </td>
+                    <td>{element.group} </td>
+
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      );
+    }
+
+    const container = document.getElementById("root");
+    const root = ReactDOM.createRoot(container);
+    root.render(<Hello />);
+  </script>
+</body>
+
+</html>
