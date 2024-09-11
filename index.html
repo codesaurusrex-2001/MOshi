@@ -143,7 +143,7 @@
       var drp3 = document.getElementById("drpdwn3");
 
       function popdrp(drpElement) {
-        seedOpts.map((seed, i) => {
+        seedOpts.forEach((seed, i) => {
           let opt = document.createElement("option");
           opt.value = i; // the index
           opt.innerHTML = seed.seedName;
@@ -154,49 +154,35 @@
       popdrp(drp2);
       popdrp(drp3);
 
-      //table population
-      //console.log("WORKS", mdata);
-      mdata.forEach(createData);
+      function updateTable(data) {
+        const tableBody = document.querySelector("#myTable tbody");
+        tableBody.innerHTML = ""; // Clear existing rows
 
-      function createData(item, index) {
-        var table = document.getElementById("myTable");
-        var row = table.insertRow();
-
-        var cell1 = row.insertCell();
-        var cell2 = row.insertCell();
-        var cell3 = row.insertCell();
-        var cell4 = row.insertCell();
-        var cell5 = row.insertCell();
-
-        cell1.innerHTML = item.seedName1;
-        cell2.innerHTML = item.seedName2;
-        cell3.innerHTML = item.seedName3;
-        cell4.innerHTML = item.moshling;
-        cell5.innerHTML = item.group;
+        data.forEach((item) => {
+          const row = tableBody.insertRow();
+          row.insertCell().textContent = item.seedName1;
+          row.insertCell().textContent = item.seedName2;
+          row.insertCell().textContent = item.seedName3;
+          row.insertCell().textContent = item.moshling;
+          row.insertCell().textContent = item.group;
+        });
       }
 
-      //sort
       document.getElementById("drpdwn1").addEventListener("change", (event) => {
-        const selectedindex = event.target.value;
-        const selectedvalue = seedOpts[selectedindex].seedName;
-        const filteredata =
-          selectedvalue === "all"
-            ? mdata
-            : mdata.filter((item) => item.catergory === selectedvalue);
+        const selectedIndex = event.target.value;
+        const selectedValue = seedOpts[selectedIndex]?.seedName;
 
-        const result = mdata.filter(
-          (item) =>
-            item.seedName1 === selectedvalue ||
-            item.seedName2 === selectedvalue ||
-            item.seedName3 === selectedvalue
-        );
-
-        console.log("*****console log works");
-        console.log(selectedvalue);
-        console.log(result);
-
-        setTableData(result);
-        // createData(filteredata);
+        if (selectedValue) {
+          const filteredData = mdata.filter(
+            (item) =>
+              item.seedName1 === selectedValue ||
+              item.seedName2 === selectedValue ||
+              item.seedName3 === selectedValue
+          );
+          updateTable(filteredData);
+        } else {
+          updateTable(mdata); // Show all data if no selection
+        }
       });
     </script>
 
