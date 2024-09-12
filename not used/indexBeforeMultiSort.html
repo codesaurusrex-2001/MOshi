@@ -49,9 +49,7 @@
       <div class="container cont-bg">
         <div class="row">
           <div class="col">
-            <a href="index.html"
-              ><img class="logo-img" src="./assets/logo.png"
-            /></a>
+            <img class="logo-img" src="./assets/logo.png" />
             <!-- target="_blank" will make link open in new tab -->
             <a
               class="btn dwn dwn-positon"
@@ -139,12 +137,11 @@
     </script>
 
     <script>
-      // Select elements
+      //select tag population
       var drp1 = document.getElementById("drpdwn1");
       var drp2 = document.getElementById("drpdwn2");
       var drp3 = document.getElementById("drpdwn3");
 
-      // Populate dropdowns
       function popdrp(drpElement) {
         seedOpts.forEach((seed, i) => {
           let opt = document.createElement("option");
@@ -163,8 +160,6 @@
 
         data.forEach((item) => {
           const row = tableBody.insertRow();
-
-          // Insert cells with data
           row.insertCell().textContent = item.seedName1;
           row.insertCell().textContent = item.seedName2;
           row.insertCell().textContent = item.seedName3;
@@ -173,35 +168,23 @@
         });
       }
 
-      // Combined filter and update table
-      function filterAndUpdateTable() {
-        const selectedValue1 = drp1.value;
-        const selectedValue2 = drp2.value;
-        const selectedValue3 = drp3.value;
+      //sort and populate
+      document.getElementById("drpdwn1").addEventListener("change", (event) => {
+        const selectedIndex = event.target.value;
+        const selectedValue = seedOpts[selectedIndex]?.seedName;
 
-        const selectedSeed1 = seedOpts[selectedValue1]?.seedName;
-        const selectedSeed2 = seedOpts[selectedValue2]?.seedName;
-        const selectedSeed3 = seedOpts[selectedValue3]?.seedName;
-
-        const highlightValues = [
-          selectedSeed1,
-          selectedSeed2,
-          selectedSeed3,
-        ].filter(Boolean);
-
-        const filteredData = mdata.filter((item) =>
-          [item.seedName1, item.seedName2, item.seedName3].some((value) =>
-            highlightValues.includes(value)
-          )
-        );
-
-        updateTable(filteredData, highlightValues);
-      }
-
-      // Event listeners for dropdown changes
-      drp1.addEventListener("change", filterAndUpdateTable);
-      drp2.addEventListener("change", filterAndUpdateTable);
-      drp3.addEventListener("change", filterAndUpdateTable);
+        if (selectedValue) {
+          const filteredData = mdata.filter(
+            (item) =>
+              item.seedName1 === selectedValue ||
+              item.seedName2 === selectedValue ||
+              item.seedName3 === selectedValue
+          );
+          updateTable(filteredData);
+        } else {
+          updateTable(mdata); // Show all data if no selection
+        }
+      });
     </script>
 
     <script type="text/babel">
