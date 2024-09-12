@@ -62,7 +62,12 @@
               target="_blank"
               >Download</a
             >
-            <input class="search-position" type="text" placeholder="Search.." />
+            <input
+              class="search-position"
+              type="text"
+              placeholder="Search.."
+              id="searchInput"
+            />
           </div>
           <div>
             <div class="row mb-4">
@@ -148,7 +153,7 @@
       function popdrp(drpElement) {
         seedOpts.forEach((seed, i) => {
           let opt = document.createElement("option");
-          opt.value = i; // the index
+          opt.value = i;
           opt.innerHTML = seed.seedName;
           drpElement.append(opt);
         });
@@ -194,14 +199,33 @@
             highlightValues.includes(value)
           )
         );
-
         updateTable(filteredData, highlightValues);
       }
 
-      // Event listeners for dropdown changes
       drp1.addEventListener("change", filterAndUpdateTable);
       drp2.addEventListener("change", filterAndUpdateTable);
       drp3.addEventListener("change", filterAndUpdateTable);
+
+      //search
+      function searchbar() {
+        const searchQuery = document
+          .querySelector("#searchInput")
+          .value.toLowerCase();
+        const filteredData = mdata.filter((item) =>
+          [
+            item.seedName1,
+            item.seedName2,
+            item.seedName3,
+            item.moshling,
+            item.group,
+          ].some((field) => field.toLowerCase().includes(searchQuery))
+        );
+        updateTable(filteredData);
+      }
+      document
+        .querySelector("#searchInput")
+        .addEventListener("input", searchbar);
+      updateTable(mdata);
     </script>
 
     <script type="text/babel">
