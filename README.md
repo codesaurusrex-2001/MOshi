@@ -1,4 +1,4 @@
-Moshling Garden Search
+<h1 align="center"> Moshling Garden Search
 
 Hi there! I made this to help me out in the Moshi Online game (specifically) and have all of the moshling recipes for that game here! 
 
