@@ -14,4 +14,7 @@ Hi there! I made this to help me out in the [Moshi Online🔗](https://moshionli
     QUICK FIX: refresh the page using your browser or click the Moshi Online icon in the top left.<br />
 <br />
 <h2>Future Updates:</h2>
-  - I will try to add new moshlings as soon as they are released. 
+  - I will try to add new moshlings as soon as they are released. <br />
+<br />
+<h2>Notice:</h2>
+ - Please note this is a passion project and I am not affiliated with Mind Candy or Moshi Online.
