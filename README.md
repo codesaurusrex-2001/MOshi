@@ -11,7 +11,7 @@ Hi there! I made this to help me out in the [Moshi Online🔗](https://moshionli
 <br />
 <h2>Bugs:</h2>
   - If you change the drop down menu item from any seed option to "None Selected" it will return an empty table.<br />
-    QUICK FIX: refresh the page using your browser or click the Moshi Online icon in the top left.<br />
+    <b>QUICK FIX</b>: refresh the page using your browser or click the Moshi Online icon in the top left.<br />
 <br />
 <h2>Future Updates:</h2>
   - I will try to add new moshlings as soon as they are released. <br />
